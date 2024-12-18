@@ -3,19 +3,55 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  /* background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(var(--background-end-rgb))
+  ) rgb(var(--background-start-rgb)); */
+  cursor: auto;
+}
+
+body[data-past-but="true"] {
+  cursor: none;
+}
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee-container {
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+.marquee-text {
+  transform: translateX(var(--scroll-offset, 0%));
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.parallax-image {
+  will-change: transform;
+  transition: transform 0.1s ease-out;
+}
+
+[style*="--cards-offset"] {
+  will-change: transform;
+  transition: transform 0.1s ease-out;
 }

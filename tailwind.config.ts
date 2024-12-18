@@ -9,8 +9,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        foreground: 'rgb(var(--foreground-rgb))',
+        'gradient-start': 'rgb(var(--background-start-rgb))',
+        'gradient-end': 'rgb(var(--background-end-rgb))',
       },
     },
   },
