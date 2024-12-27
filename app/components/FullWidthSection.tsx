@@ -1,6 +1,19 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
+// import Image from 'next/image'
+import dynamic from 'next/dynamic';
+// import GlassSphere from '@/app/components/GlassSphere'
+
+// const GlassSphere = dynamic(() => import('./GlassSphere'), {
+//   ssr: false,
+// });
+
+
+// Dynamically import your Three.js background component, turning off SSR
+const AnimatedGradient = dynamic(() => import('./AnimatedGradient'), {
+  ssr: false,
+});
 
 export default function FullWidthSection() {
   const marqueeRef = useRef<HTMLDivElement>(null)
@@ -47,131 +60,142 @@ export default function FullWidthSection() {
     if (index !== activeIndex) {
       return {
         opacity: 0,
-        transform: 'translateY(50vh)',
-        transition: 'all 0.5s ease-out'
+        transform: 'translateY(30vh)',
+        transition: 'all 0.1s ease-out'
       }
     }
     
     return {
-      opacity: 1,
+      opacity: 0.6,
       transform: 'translateY(0)',
       transition: 'all 0.5s ease-out'
     }
   }
 
-  const getStaggeredTextStyle = (index: number, scroll: number) => {
-    const threshold = index * 0.3; // Controls when each word appears
-    const opacity = scroll > threshold ? 1 : 0;
-    const y = scroll > threshold ? 0 : 100;
+  // const getStaggeredTextStyle = (index: number, scroll: number, isShadow: boolean = false): React.CSSProperties => {
+  //   const threshold = index * 0.3;
+  //   const opacity = scroll > threshold ? (isShadow ? 0.5 : 1) : 0;
+  //   const y = scroll > threshold ? 0 : 100;
     
-    const positions = [
-      { x: '10%', y: '20%' },  // WE'RE - top left
-      { x: '40%', y: '50%' },  // NOT - middle
-      { x: '70%', y: '80%' },  // IMPRESSED - bottom right
-    ];
+  //   const positions = [
+  //     { x: '10%', y: '10%' },
+  //     { x: '20%', y: '80%' },
+  //     { x: '30%', y: '130%' },
+  //   ];
 
-    return {
-      opacity,
-      transform: `translate(${positions[index].x}, ${positions[index].y}) translateY(${y}px)`,
-      transition: 'all 0.5s ease-out',
-      position: 'absolute',
-      left: 0,
-      top: 0
-    };
-  };
+  //   return {
+  //     opacity,
+  //     transform: `translate(${positions[index].x}, ${positions[index].y}) translateY(${y}px)`,
+  //     transition: 'all 0.5s ease-out',
+  //     position: 'absolute' as const,
+  //     left: 0,
+  //     top: 0
+  //   };
+  // };
 
-  const [scrollProgress, setScrollProgress] = useState(0);
+  // const [scrollProgress, setScrollProgress] = useState(0);
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const section = document.getElementById('staggered-section');
-      if (!section) return;
+  // useEffect(() => {
+  //   const handleScroll = () => {
+  //     const section = document.getElementById('staggered-section');
+  //     if (!section) return;
 
-      const rect = section.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
+  //     const rect = section.getBoundingClientRect();
+  //     const viewportHeight = window.innerHeight;
       
-      if (rect.top <= viewportHeight) {
-        const progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
-        setScrollProgress(Math.max(0, Math.min(1, progress)));
-      }
-    };
+  //     if (rect.top <= viewportHeight) {
+  //       const progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
+  //       setScrollProgress(Math.max(0, Math.min(1, progress)));
+  //     }
+  //   };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  //   window.addEventListener('scroll', handleScroll);
+  //   return () => window.removeEventListener('scroll', handleScroll);
+  // }, []);
 
   return (
-    <div className="relative bg-black text-white min-h-screen w-full">
-      <div ref={marqueeRef} className="relative overflow-hidden whitespace-nowrap">
-        {[...Array(6)].map((_, i) => (
-          <h2 
-            key={i} 
-            className="text-[20vw] font-bold marquee-text inline-block text-white"
-            style={{
-              textShadow: '0 0 10px rgba(255, 255, 255, 0.8), 0 0 10px rgba(255, 255, 255, 0.6), 0 0 20px rgba(255, 255, 255, 0.4)'
-            }}
-          >
-            THIS SHIT SUCKS&nbsp;
-          </h2>
-        ))}
-      </div>
-      
-      <div className="relative px-8 py-16">
-        <div className="text-[10vw] font-bold opacity-50 transform -rotate-3">
-          so much effort
-        </div>
-        <div className="text-[8vw] font-bold opacity-30 transform rotate-2">
-          for so little information
-        </div>
-      </div>
-
-      <div ref={imageRef} className="relative h-[300vh]">
-        <div className="sticky top-0 h-screen overflow-hidden">
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="absolute inset-0 z-10 flex items-center justify-center">
-            {['THIS IS WHY', 'WE CAN\'T HAVE', 'NICE THINGS'].map((text, index) => (
-              <h2 
-                key={index}
-                className="text-[12vw] font-bold text-white text-center absolute tracking-tight leading-none"
-                style={getTextStyle(index)}
-              >
-                {text}
-              </h2>
-            ))}
-          </div>
-          <img 
-            src="/oversized.jpeg" 
-            alt="Oversized demonstration image"
-            className="absolute inset-0 w-full h-full object-cover"
+    <>
+      <div className="w-full relative">
+        <svg
+          viewBox="0 0 100 40"
+          preserveAspectRatio="none"
+          className="w-full h-[150vh]"
+        >
+          <path
+            d="M50,0 C50,20 20,35 0,40 L100,40 C80,35 50,20 50,0"
+            fill="black"  
           />
-        </div>
+        </svg>
       </div>
-      
-      <div id="staggered-section" className="relative h-[200vh]">
-        <div className="sticky top-0 h-screen overflow-hidden">
-          {['WE\'RE', 'NOT', 'IMPRESSED'].map((text, index) => (
-            <div key={index} className="absolute inset-0 h-screen w-screen">
-              {/* Background text - opacity changed from opacity-10 to opacity-30 */}
-              <div 
-                className="absolute text-[20vw] font-bold opacity-30 w-full"
-                style={getStaggeredTextStyle(index, scrollProgress)}
-              >
-                {text}
-              </div>
-              
-              {/* Foreground text remains unchanged */}
-              <div 
-                className="absolute text-[15vw] font-bold w-full"
-                style={getStaggeredTextStyle(index, scrollProgress)}
-              >
-                {text}
-              </div>
-            </div>
+      <div className="relative pt-48 bg-black text-white min-h-screen w-full overflow-x-clip">
+        <div ref={marqueeRef} className="relative overflow-hidden whitespace-nowrap">
+          {[...Array(6)].map((_, i) => (
+            <h2 
+              key={i} 
+              className="text-[20vw] font-semibold marquee-text inline-block text-[#fffaf6] relative z-10"
+              style={{
+                textShadow: '0 0 100px rgba(255, 206, 166, 0.8), 0 0 150px rgba(255, 200, 166, 0.6), 0 0 120px rgba(255, 180, 110, 0.4)'
+              }}
+            >
+              WE'RE NOT IMPRESSED &nbsp; &nbsp;
+            </h2>
+            
           ))}
         </div>
+        
+        <div className="relative px-8 py-24">
+          <div className="text-[8vw] font-bold opacity-50 transform -rotate-3">
+            so much effort
+          </div>
+          <div className="text-[6vw] font-bold opacity-30 transform rotate-2">
+            for such little information
+          </div>
+        </div>
+
+        <div ref={imageRef} className="relative h-[300vh]">
+          <div className="sticky top-0 h-screen">
+            <div className="absolute inset-0" />
+            <div className="absolute inset-0 z-10 flex items-center justify-center">
+              {['THIS IS WHY', 'WE CAN\'T HAVE', 'NICE THINGS'].map((text, index) => (
+                <h2 
+                  key={index}
+                  className="text-[14vw] opacity-90 font-black text-white text-center absolute tracking-tight leading-none mix-blend-difference"
+                  style={getTextStyle(index)}
+                >
+                  {text}
+                </h2>
+              ))}
+            </div>
+            <AnimatedGradient />
+          </div>
+        </div>
+        
+        {/* <div id="staggered-section" className="relative h-[200vh]">
+          <div className="sticky top-0 h-screen overflow-hidden">
+            {['THIS', 'SHIT', 'SUCKS'].map((text, index) => (
+              <div key={index} className="absolute inset-0 h-screen w-screen">
+                <div 
+                  className="absolute font-black text-[18vw] w-full"
+                  style={{
+                    ...getStaggeredTextStyle(index, scrollProgress, true),
+                    transform: `${getStaggeredTextStyle(index, scrollProgress).transform} translateZ(-10px)`,
+                  }}
+                >
+                  {text}
+                </div>
+                <div 
+                  className="absolute text-[16vw] font-bold w-full"
+                  style={getStaggeredTextStyle(index, scrollProgress)}
+                >
+                  {text}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div> */}
+        
+        {/* <div className="h-[100vh]" /> */}
       </div>
-      
-      <div className="h-[100vh]" />
-    </div>
+    </>
   )
 } 

@@ -17,13 +17,19 @@ export default function CustomCursor() {
 
     const handleScroll = () => {
       const butElement = document.querySelector('#but-section')
-      if (!butElement) return
+      const bottomNarrowSection = document.querySelector('#bottom-narrow-section')
+      if (!butElement || !bottomNarrowSection) return
       
       const butPosition = butElement.getBoundingClientRect().top
-      const isPastBut = butPosition < 0
-      setIsVisible(isPastBut)
+      const bottomPosition = bottomNarrowSection.getBoundingClientRect().top
       
-      document.body.setAttribute('data-past-but', isPastBut.toString())
+      // Show cursor between "but" section and bottom narrow section
+      const isPastBut = butPosition < 0
+      const isBeforeBottom = bottomPosition > 0
+      const shouldShowCursor = isPastBut && isBeforeBottom
+      
+      setIsVisible(shouldShowCursor)
+      document.body.setAttribute('data-past-but', shouldShowCursor.toString())
     }
 
     handleScroll()

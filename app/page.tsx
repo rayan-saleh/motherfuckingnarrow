@@ -3,6 +3,8 @@
 import CustomCursor from './components/CustomCursor'
 import NarrowSection from './components/NarrowSection'
 import FullWidthSection from './components/FullWidthSection'
+import BottomNarrowSection from './components/BottomNarrowSection'
+
 
 export default function Home() {
   return (
@@ -14,13 +16,8 @@ export default function Home() {
         
         {/* Full-width section */}
         <FullWidthSection />
-        
-        {/* Final narrow section (you can create another component for this if needed) */}
-        <div className="grid justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 max-w-xl mx-auto">
-          <p className="text-xl">
-            And that's why narrow websites are better.
-          </p>
-        </div>
+
+        <BottomNarrowSection />
       </div>
     </>
   )
