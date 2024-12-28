@@ -3,7 +3,7 @@
 export default function BottomNarrowSection() {
   return (
     <div className="grid justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)] mt-24">
-      <main className="flex flex-col gap-2 sm:items-start max-w-xl 2xl:max-w-2xl [&>p]:text-xl 2xl:[&>p]:text-2xl">
+      <main className="flex flex-col gap-2 sm:items-start max-w-xl 2xl:max-w-2xl [&>p]:text-xl 2xl:[&>p]:text-xl">
         <p>
         The client wanted something <b>bold</b>, and with a six-figure budget, you can’t settle for simple. So why not go all out? 
         <br />
@@ -12,7 +12,7 @@ export default function BottomNarrowSection() {
 
         </p>
         <p className="font-bold pt-8 text-2xl 2xl:text-3xl">
-          1. Boostreadability
+          1. Boost readability
         </p>
         <p>
           A shorter line length matches our natural field of view, helping eyes stay focused and improving comprehension.

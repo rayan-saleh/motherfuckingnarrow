@@ -3,7 +3,7 @@
 export default function NarrowSection() {
   return (
     <div className="grid justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 sm:items-start max-w-xl 2xl:max-w-2xl [&>p]:text-xl 2xl:[&>p]:text-2xl">
+      <main className="flex flex-col gap-8 sm:items-start max-w-xl 2xl:max-w-2xl [&>p]:text-xl 2xl:[&>p]:text-xl">
         <h1 className="text-4xl 2xl:text-5xl font-bold pb-8">Motherfucking Narrow</h1>
         <p>
           Full-width sites aren't inherently bad. I get it. Why not use the
