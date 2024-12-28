@@ -8,11 +8,11 @@ export default function BottomNarrowSection() {
         The client wanted something <b>bold</b>, and with a six-figure budget, you can’t settle for simple. So why not go all out? 
         <br />
         <br />
-        Well, because <b>FULL-WIDTH</b> disrupts the web browsing experience and degrades usability. While <i>NARROW</i> websites:
+        Well, because <b>FULL-WIDTH</b> disrupts the web browsing experience and degrades usability. While <i>narrow</i> websites:
 
         </p>
         <p className="font-bold pt-8 text-2xl 2xl:text-3xl">
-          1. Boosts readability
+          1. Boostreadability
         </p>
         <p>
           A shorter line length matches our natural field of view, helping eyes stay focused and improving comprehension.
