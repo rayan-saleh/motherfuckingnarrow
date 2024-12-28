@@ -3,8 +3,8 @@ import { GeistSans } from 'geist/font/sans'
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Narrow Websites Are Better",
-  description: "A satirical manifesto about why narrow websites are superior",
+  title: "Motherfucking Narrow",
+  description: "Why narrow websites are better",
 };
 
 export default function RootLayout({
