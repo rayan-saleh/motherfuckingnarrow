@@ -2,6 +2,7 @@
     position: absolute;
     inset: -100px;
     z-index: -1;
+    will-change: transform;
 }
 
 /* Main blob */
@@ -21,12 +22,13 @@
     );
     background-size: 400% 400%;
     animation: 
-        gradient 15s ease infinite,
-        float1 20s ease-in-out infinite;
-    filter: saturate(1.2) brightness(1.1) blur(100px);
+        gradient 6s ease infinite,
+        float1 10s ease-in-out infinite;
+    filter: blur(100px);
     opacity: 0.5;
     border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
     transform: translate(-50%, -50%);
+    will-change: transform;
 }
 
 /* Second blob */
@@ -40,18 +42,16 @@
     background: linear-gradient(
         45deg,
         #7049c3,
-        #4dc9ff,
-        #ff3d7f,
-        #ff9e9e
+        #4dc9ff
     );
-    background-size: 400% 400%;
+    background-size: 200% 200%;
     animation: 
-        gradient 20s ease infinite reverse,
-        float2 25s ease-in-out infinite;
-    filter: saturate(1.2) brightness(1.1) blur(80px);
+        gradient 10s ease infinite reverse;
+    filter: blur(80px);
     opacity: 0.4;
     border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
     z-index: -1;
+    will-change: transform;
 }
 
 /* Third blob */
@@ -71,8 +71,8 @@
     );
     background-size: 400% 400%;
     animation: 
-        gradient 18s ease infinite,
-        float3 22s ease-in-out infinite;
+        gradient 10s ease infinite,
+        float3 10s ease-in-out infinite;
     filter: saturate(1.2) brightness(1.1) blur(60px);
     opacity: 0.3;
     border-radius: 40% 60% 70% 30% / 40% 50% 60% 50%;
@@ -81,7 +81,7 @@
 
 /* Lines overlay now as a separate element */
 .gradientBackground > span {
-    position: absolute;
+    /* position: absolute;
     inset: 0;
     background: 
         repeating-linear-gradient(
@@ -95,7 +95,7 @@
     opacity: 0.08;
     mix-blend-mode: multiply;
     pointer-events: none;
-    animation: shiftLines 60s linear infinite;
+    animation: shiftLines 60s linear infinite; */
 }
 
 @keyframes float1 {

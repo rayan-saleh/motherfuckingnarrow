@@ -29,9 +29,9 @@ export default function FullWidthSection() {
       const viewportHeight = window.innerHeight
       
       if (rect.top <= viewportHeight) {
-        const scrollProgress = (100 - rect.top) / rect.height
+        const scrollProgress = (400 - rect.top) / rect.height
         const clampedProgress = Math.max(0, Math.min(1, scrollProgress))
-        const offset = -200 * clampedProgress
+        const offset = -100 * clampedProgress
         document.documentElement.style.setProperty('--scroll-offset', `${offset}%`)
       } else {
         document.documentElement.style.setProperty('--scroll-offset', '0%')
@@ -72,47 +72,6 @@ export default function FullWidthSection() {
     }
   }
 
-  // const getStaggeredTextStyle = (index: number, scroll: number, isShadow: boolean = false): React.CSSProperties => {
-  //   const threshold = index * 0.3;
-  //   const opacity = scroll > threshold ? (isShadow ? 0.5 : 1) : 0;
-  //   const y = scroll > threshold ? 0 : 100;
-    
-  //   const positions = [
-  //     { x: '10%', y: '10%' },
-  //     { x: '20%', y: '80%' },
-  //     { x: '30%', y: '130%' },
-  //   ];
-
-  //   return {
-  //     opacity,
-  //     transform: `translate(${positions[index].x}, ${positions[index].y}) translateY(${y}px)`,
-  //     transition: 'all 0.5s ease-out',
-  //     position: 'absolute' as const,
-  //     left: 0,
-  //     top: 0
-  //   };
-  // };
-
-  // const [scrollProgress, setScrollProgress] = useState(0);
-
-  // useEffect(() => {
-  //   const handleScroll = () => {
-  //     const section = document.getElementById('staggered-section');
-  //     if (!section) return;
-
-  //     const rect = section.getBoundingClientRect();
-  //     const viewportHeight = window.innerHeight;
-      
-  //     if (rect.top <= viewportHeight) {
-  //       const progress = (viewportHeight - rect.top) / (viewportHeight + rect.height);
-  //       setScrollProgress(Math.max(0, Math.min(1, progress)));
-  //     }
-  //   };
-
-  //   window.addEventListener('scroll', handleScroll);
-  //   return () => window.removeEventListener('scroll', handleScroll);
-  // }, []);
-
   return (
     <>
       <div className="w-full relative">
@@ -128,13 +87,13 @@ export default function FullWidthSection() {
         </svg>
       </div>
       <div className="relative pt-48 bg-black text-white min-h-screen w-full overflow-x-clip">
-        <div ref={marqueeRef} className="relative overflow-hidden whitespace-nowrap">
-          {[...Array(6)].map((_, i) => (
+        <div ref={marqueeRef} className="relative overflow-visible whitespace-nowrap">
+          {[...Array(1)].map((_, index) => (
             <h2 
-              key={i} 
-              className="text-[20vw] font-semibold marquee-text inline-block text-[#fffaf6] relative z-10"
+              key={index} 
+              className="text-[30vw] md:text-[20vw] font-semibold marquee-text inline-block text-[#fffaf6] relative z-10 pl-4 md:pl-0"
               style={{
-                textShadow: '0 0 100px rgba(255, 206, 166, 0.8), 0 0 150px rgba(255, 200, 166, 0.6), 0 0 120px rgba(255, 180, 110, 0.4)'
+                textShadow: '0 0 15vw rgba(255, 206, 166, 0.8), 0 0 20vw rgba(255, 200, 166, 0.6), 0 0 25vw rgba(255, 180, 110, 0.4)'
               }}
             >
               WE'RE NOT IMPRESSED &nbsp; &nbsp;
@@ -144,10 +103,10 @@ export default function FullWidthSection() {
         </div>
         
         <div className="relative px-8 py-24">
-          <div className="text-[8vw] font-bold opacity-50 transform -rotate-3">
+          <div className="text-[12vw] md:text-[8vw] font-bold opacity-50 transform -rotate-3">
             so much effort
           </div>
-          <div className="text-[6vw] font-bold opacity-30 transform rotate-2">
+          <div className="text-[10vw] md:text-[6vw] font-bold opacity-30 transform rotate-2">
             for such little information
           </div>
         </div>
@@ -159,7 +118,7 @@ export default function FullWidthSection() {
               {['THIS IS WHY', 'WE CAN\'T HAVE', 'NICE THINGS'].map((text, index) => (
                 <h2 
                   key={index}
-                  className="text-[14vw] opacity-90 font-black text-white text-center absolute tracking-tight leading-none mix-blend-difference"
+                  className="text-[18vw] md:text-[14vw] opacity-90 font-black text-white text-center absolute tracking-tight leading-none mix-blend-difference"
                   style={getTextStyle(index)}
                 >
                   {text}
